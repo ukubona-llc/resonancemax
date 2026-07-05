@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ukubona · ResonanceMax · Pentadic Kernel</title>
+<title>Ukubona · Pentadic ResonanceMax</title>
 
 <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" id="favicon-dark"/>
 <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme:light)" id="favicon-light"/>
@@ -11,8 +11,20 @@
 <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image"/>
 <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image"/>
 
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
 :root{
   --bg:#08080D;
@@ -21,10 +33,10 @@
   --text:#E8E8F0;
   --muted:#7070A0;
   --amber:#F59E0B;
-  --serif:'DM Serif Display', serif;
-  --sans:'DM Sans', sans-serif;
-  --mono:'DM Mono', monospace;
-  --radius:6px;
+  --serif:'DM Serif Display',serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius:4px;
   --max:880px;
 }
 
@@ -38,14 +50,13 @@
 }
 
 body{
-  margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:var(--sans);
   transition:0.3s;
 }
 
-/* NAV */
+/* NAV (canonical Ukubona) */
 .site-nav{
   position:sticky;
   top:0;
@@ -61,35 +72,34 @@ body{
   width:28px;
   height:28px;
   position:relative;
-  margin-right:10px;
+  margin-right:12px;
 }
 
 .logo-wrap img{
-  width:100%;
   position:absolute;
-  top:0;
-  left:0;
+  width:100%;
   animation:spin 90s linear infinite;
 }
 
-@keyframes spin{ to{ transform:rotate(360deg);} }
+@keyframes spin{to{transform:rotate(360deg);}}
 
-.logo-light{ opacity:0; }
-[data-theme="light"] .logo-dark{ opacity:0; }
-[data-theme="light"] .logo-light{ opacity:1; }
+.logo-light{opacity:0;}
+[data-theme="light"] .logo-dark{opacity:0;}
+[data-theme="light"] .logo-light{opacity:1;}
 
 .brand{
   font-family:var(--serif);
   flex:1;
 }
 
-.toggle{
+.theme-btn{
   font-family:var(--mono);
   font-size:0.7rem;
-  padding:0.3rem 0.8rem;
+  padding:0.28rem 0.85rem;
   border-radius:20px;
   border:1px solid var(--border);
   background:var(--surface);
+  color:var(--muted);
   cursor:pointer;
 }
 
@@ -102,59 +112,55 @@ body{
 
 h1{
   font-family:var(--serif);
-  font-size:2.5rem;
-  margin-bottom:0.5rem;
+  font-size:2.4rem;
+  margin-bottom:1rem;
 }
 
-.sub{
-  color:var(--muted);
-  line-height:1.6;
-}
-
-/* PENTAD */
-.pentad{
-  margin-top:2rem;
-  display:grid;
-  gap:1rem;
-}
-
-.node{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-left:3px solid var(--amber);
+.phase{
   padding:1rem;
+  border-left:3px solid var(--amber);
+  background:var(--surface);
+  margin-top:1rem;
   border-radius:var(--radius);
 }
 
-.node h2{
-  margin:0;
+.phase h2{
   font-family:var(--mono);
   font-size:0.8rem;
   color:var(--amber);
   text-transform:uppercase;
 }
 
-.node p{
+.phase p{
   margin-top:0.5rem;
   color:var(--muted);
-  font-size:0.9rem;
   line-height:1.6;
+  font-size:0.9rem;
 }
 
-.mini{
+/* CANVAS (ONLY PHASE 1 CHAOS) */
+.canvas-wrap{
   margin-top:2rem;
-  padding:1rem;
-  background:var(--surface);
+  height:340px;
   border:1px solid var(--border);
+  background:var(--surface);
   border-radius:var(--radius);
-  font-family:var(--mono);
-  font-size:0.85rem;
-  color:var(--muted);
+  position:relative;
+  overflow:hidden;
 }
 
-.highlight{
+canvas{width:100%;height:100%;display:block;}
+
+.label{
+  position:absolute;
+  top:12px;
+  left:12px;
+  font-family:var(--mono);
+  font-size:0.7rem;
   color:var(--amber);
-  font-weight:500;
+  background:rgba(0,0,0,0.2);
+  padding:0.3rem 0.6rem;
+  border-radius:3px;
 }
 </style>
 </head>
@@ -167,72 +173,110 @@ h1{
     <img class="logo-light" src="https://abikesa.github.io/logos/assets/ukubona-light.png">
   </div>
 
-  <div class="brand">Ukubona · ResonanceMax Kernel</div>
+  <div class="brand">Ukubona · ResonanceMax Pentad</div>
 
-  <button class="toggle" id="toggle">light</button>
+  <button class="theme-btn" id="toggle">light</button>
 </nav>
 
 <div class="page">
 
-<h1>Pentadic Resonance Engine</h1>
+<h1>Pentadic Resonance System</h1>
 
-<p class="sub">
-A system that does not compute in steps, but resolves identity through five irreducible phases.
-</p>
+<!-- 1 TENSOR (ONLY PLACE WITH CHAOS) -->
+<div class="phase">
+  <h2>1 · Tensor Sensation (chaos field)</h2>
 
-<div class="pentad">
+  <p>
+    Raw event-stream. No structure. No identity. Only multiplicity.
+  </p>
 
-  <div class="node">
-    <h2>1 · Observation</h2>
-    <p>Event stream (T). Raw incoming world-state.</p>
+  <div class="canvas-wrap">
+    <div class="label">TENSOR FIELD</div>
+    <canvas id="c"></canvas>
   </div>
-
-  <div class="node">
-    <h2>2 · Model</h2>
-    <p>A priori structure (M). Learned memory / eigenbasis.</p>
-  </div>
-
-  <div class="node">
-    <h2>3 · ResonanceMax</h2>
-    <p class="highlight">
-      Alignment operator between T and M.
-      This is the coupling moment: where signal becomes comparable.
-    </p>
-  </div>
-
-  <div class="node">
-    <h2>4 · softMax</h2>
-    <p>
-      Probability distribution over resonant candidates.
-      The system spreads identity instead of choosing.
-    </p>
-  </div>
-
-  <div class="node">
-    <h2>5 · argMax</h2>
-    <p>
-      Final collapse. One identity is selected from the distribution.
-    </p>
-  </div>
-
 </div>
 
-<div class="mini">
-Pipeline: T → M → <span class="highlight">ResonanceMax</span> → softMax → argMax
+<!-- 2 MATRIX -->
+<div class="phase">
+  <h2>2 · Matrix Attention</h2>
+  <p>Structure begins. Relationships emerge between particles (no canvas here).</p>
+</div>
+
+<!-- 3 VECTOR -->
+<div class="phase">
+  <h2>3 · Vector Intention</h2>
+  <p>Directional compression begins. Flow replaces noise.</p>
+</div>
+
+<!-- 4 RESONANCE -->
+<div class="phase">
+  <h2>4 · ResonanceMax</h2>
+  <p>
+    Coupling operator: alignment between tensor field and latent structure.
+    This is NOT a step — it is the bridge.
+  </p>
+</div>
+
+<!-- 5 COLLAPSE -->
+<div class="phase">
+  <h2>5 · softMax → argMax</h2>
+  <p>
+    Probability distribution forms (softmax), then collapses (argmax) into identity.
+  </p>
 </div>
 
 </div>
 
 <script>
-/* THEME TOGGLE */
+/* THEME TOGGLE (FIXED TO YOUR TEMPLATE STYLE) */
 const btn = document.getElementById("toggle");
-let theme = "dark";
 
 btn.onclick = () => {
-  theme = theme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", theme);
-  btn.textContent = theme === "dark" ? "light" : "dark";
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
+  btn.textContent = isDark ? "dark" : "light";
 };
+
+/* TENSOR CHAOS ONLY (PHASE 1) */
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const N = 140;
+const pts = Array.from({length:N}).map(()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  vx:(Math.random()-0.5)*2.5,
+  vy:(Math.random()-0.5)*2.5
+}));
+
+function draw(){
+  ctx.fillStyle="rgba(15,15,24,0.35)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  for(const p of pts){
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if(p.x<0||p.x>canvas.width)p.vx*=-1;
+    if(p.y<0||p.y>canvas.height)p.vy*=-1;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2.2,0,Math.PI*2);
+    ctx.fillStyle="rgba(245,158,11,0.7)";
+    ctx.fill();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+draw();
 </script>
 
 </body>
