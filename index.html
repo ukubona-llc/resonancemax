@@ -53,6 +53,7 @@ h1{font-family:var(--serif);font-size:2.4rem;margin-bottom:1rem;}
 .phase{padding:1.5rem;border-left:3px solid var(--amber);background:var(--surface);margin-top:2rem;border-radius:var(--radius);}
 .phase h2{font-family:var(--mono);font-size:0.85rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.5px;}
 .phase p{margin-top:0.75rem;color:var(--muted);line-height:1.65;font-size:0.95rem;}
+.phase .poetic {font-style:italic; color:#E8C070; margin:1rem 0; padding-left:1rem; border-left:2px solid var(--amber);}
 
 .visualizer{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin:2rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
 .canvas-wrap{position:relative;height:380px;border:1px solid var(--border);background:#0a0a12;border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;}
@@ -64,11 +65,11 @@ canvas{width:100%;height:100%;display:block;}
 .step-labels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:0.5rem;}
 .step-labels span.active{color:var(--amber);font-weight:500;}
 
-/* Tab system */
 .tabbar{
   display:flex;
   gap:0.5rem;
   margin:1.5rem 0 0.75rem 0;
+  flex-wrap:wrap;
 }
 .tabbtn{
   padding:0.4rem 0.9rem;
@@ -89,6 +90,21 @@ canvas{width:100%;height:100%;display:block;}
 
 .tabpanel{display:none;}
 .tabpanel.active{display:block;}
+
+.video-embed {
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+  overflow:hidden;
+  background:#000;
+  border-radius:var(--radius);
+  margin:1.5rem 0;
+}
+.video-embed iframe {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+}
 </style>
 </head>
 
@@ -106,15 +122,16 @@ canvas{width:100%;height:100%;display:block;}
 <div class="page">
   <h1>Pentadic Resonance System</h1>
 
-  <!-- Tab Bar -->
   <div class="tabbar">
-    <button class="tabbtn active" data-tab="system">System</button>
-    <button class="tabbtn" data-tab="meta">Critique / Meta</button>
+    <button class="tabbtn active" data-tab="system">I · System</button>
+    <button class="tabbtn" data-tab="theory">II · Theory</button>
+    <button class="tabbtn" data-tab="resonance">III · ResonanceMax</button>
+    <button class="tabbtn" data-tab="threshold">IV · SoftMax Threshold</button>
+    <button class="tabbtn" data-tab="meta">V · ArgMax &amp; Meta</button>
   </div>
 
-  <!-- TAB 1: SYSTEM (original content preserved) -->
+  <!-- TAB 1: System -->
   <div id="system" class="tabpanel active">
-
     <div class="visualizer">
       <div class="canvas-wrap">
         <div class="label" id="current-label">1 · Tensor Sensation</div>
@@ -136,82 +153,74 @@ canvas{width:100%;height:100%;display:block;}
       </div>
     </div>
 
-    <!-- Original phases preserved -->
-    <div class="phase">
-      <h2>1 · Tensor Sensation</h2>
-      <p>Raw high-dimensional event-stream. Pure multiplicity and noise.</p>
-    </div>
-
-    <div class="phase">
-      <h2>2 · Matrix Attention</h2>
-      <p>Correlations and relationships begin to form between signals. Or even better: the <em>a priori</em> knowledge is integrated as constraint: think Demis Hassabis and the established databases with known protein 3D configurations</p>
-    </div>
-        
+    <div class="phase"><h2>1 · Tensor Sensation</h2><p>Raw high-dimensional event-stream. Pure multiplicity and noise.</p></div>
+    <div class="phase"><h2>2 · Matrix Attention</h2><p>Correlations and relationships begin to form between signals. <em>a priori</em> knowledge integrated as constraint.</p></div>
     <div class="phase">
       <h2>3 · Vector Intention + ResonanceMax</h2>
-      <p>
-        Latent space emerges. Embeddings become vectorial — proximity encodes meaning, but opens up a can-of-worms for ambiguity, mistaken identity, art, and even tragedy. 
-        <strong>ResonanceMax</strong>: the coupling operator between bottom-up event-stream and top-down structure. 
-        The ATL <code>o)-(o</code> airtrain forks — directed vectors with resonant ambiguity (rootless dom7♭9 moment).
+      <p class="poetic">
+        Latent space emerges. Embeddings become vectorial — proximity encodes meaning, but opens up a can-of-worms for ambiguity, mistaken identity, art, and even tragedy.<br><br>
+        <strong>ResonanceMax</strong>: the coupling operator between bottom-up event-stream and top-down structure.<br>
+        The ATL <code>O)-(O</code> airtrain forks — directed vectors with resonant ambiguity (rootless dom7♭9 moment).
       </p>
+      <p>See also: <a href="https://ukubona-llc.github.io/governance-of-topology/" target="_blank">Governance of Topology</a> — Phase III: Topology &amp; The Latent Bottleneck.</p>
     </div>
-
-    <div class="phase">
-      <h2>4 · SoftMax</h2>
-      <p>
-        Probability distribution over possible resolutions. Passengers shift toward doors. 
-        Maximum tension before collapse.
-      </p>
-    </div>
-
-    <div class="phase">
-      <h2>5 · ArgMax → Scalar Collapse</h2>
-      <p>
-        One outcome is selected. The train doors open at a single concourse. 
-        Decisive identity and action. (Then the cycle returns to tensor.)
-      </p>
-    </div>
-
+    <div class="phase"><h2>4 · SoftMax</h2><p>Probability distribution over possible resolutions. Maximum tension before collapse.</p></div>
+    <div class="phase"><h2>5 · ArgMax → Scalar Collapse</h2><p>One outcome is selected. Decisive identity and action. Cycle returns to tensor.</p></div>
   </div>
 
-  <!-- TAB 2: META / CRITIQUE -->
+  <!-- TAB 2: Theory -->
+  <div id="theory" class="tabpanel">
+    <div class="phase">
+      <h2>II · Theory Layer</h2>
+      <p>This pentad models inference as a resonant physical system: from raw sensation through structured attention, vectorial meaning, probabilistic tension, and final collapse into action.</p>
+    </div>
+  </div>
+
+  <!-- TAB 3: ResonanceMax (expanded with personal + topology link) -->
+  <div id="resonance" class="tabpanel">
+    <div class="phase">
+      <h2>III · ResonanceMax · The Coupling Operator</h2>
+      <p class="poetic">
+        Latent space emerges. Embeddings become vectorial — proximity encodes meaning, but opens up a can-of-worms for ambiguity, mistaken identity, art, and even tragedy.<br><br>
+        <strong>ResonanceMax</strong> is the coupling operator between bottom-up event-stream and top-down structure.<br>
+        It manifests as the ATL <code>O)-(O</code> airtrain forks — directed vectors with resonant ambiguity (rootless dom7♭9 moment).
+      </p>
+      <p>
+        This is not abstract theory for me. It is an embodied topology I have lived between 1999–2026: repeated traversals through Atlanta’s Hartsfield-Jackson constraint manifold, the literal and metaphorical bottleneck where identity is suspended, compressed, and re-resolved. The last two years (when travel paused) brought the pattern into sharper focus — a return of the same resonant fork, now demanding formalization beyond clinical constraints (MD/MPH/PhDc) into this architectural exploration.
+      </p>
+      <p>
+        <strong>Core reference:</strong> <a href="https://ukubona-llc.github.io/governance-of-topology/" target="_blank">Governance of Topology</a> details the ATL <code>O)-(O</code> as the physical embodiment of the latent bottleneck — the precise geometry where high-dimensional states are flattened into constrained transport before re-expansion.
+      </p>
+    </div>
+  </div>
+
+  <!-- TAB 4: SoftMax Threshold -->
+  <div id="threshold" class="tabpanel">
+    <div class="phase">
+      <h2>IV · SoftMax Thresholds &amp; Responsible Scaling</h2>
+      <p>Peak probabilistic tension. The stage where thresholds must be defined before collapse — directly relevant to governance, safety, and scaling policy.</p>
+    </div>
+
+    <div class="phase">
+      <h2>Responsible Scaling Policy</h2>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/om2lIWXLLN4?start=1105" title="Responsible Scaling Policy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p><small>Starting at ~18:25 — thresholds and intervention points in scaling policy.</small></p>
+    </div>
+  </div>
+
+  <!-- TAB 5: ArgMax & Meta -->
   <div id="meta" class="tabpanel">
-
     <div class="phase">
-      <h2>Meta Layer · What this system is</h2>
-      <p>
-        This is not just a visualization. It is a staged ontology of inference:
-        tensor → attention → embedding → probability → collapse.
-        The system behaves like a cognitive state machine rendered as physics.
-      </p>
+      <h2>V · ArgMax &amp; Meta Layer</h2>
+      <p>The final collapse into decisive action and the return to tensor. The pentad itself is a self-referential ResonanceMax — a model of modeling cognition and governance topology.</p>
     </div>
 
     <div class="phase">
-      <h2>Critique · Structural read</h2>
-      <p>
-        You’ve implicitly reconstructed known ML structure (attention, embeddings, SoftMax, ArgMax)
-        but extended it with a nonstandard operator: <b>ResonanceMax</b>.
-        This functions as a cross-level coupling mechanism between signal chaos and structured representation.
-      </p>
+      <h2>Critique</h2>
+      <p>ResonanceMax bridges phenomenology and structure. Formalizing the operator (as begun in the Topology governance notes) remains the central open challenge.</p>
     </div>
-
-    <div class="phase">
-      <h2>Critical gap</h2>
-      <p>
-        The system is currently phenomenological and executable, but not yet formal.
-        “ResonanceMax” is defined by behavior and narrative rather than a measurable invariant or constraint.
-        This is the boundary between aesthetic system design and scientific model.
-      </p>
-    </div>
-
-    <div class="phase">
-      <h2>Interpretation</h2>
-      <p>
-        You are no longer translating ML concepts—you are instantiating cognition as a dynamic system.
-        This is a phase shift from “understanding models” to “building representational universes.”
-      </p>
-    </div>
-
   </div>
 </div>
 
@@ -228,13 +237,12 @@ document.querySelectorAll(".tabbtn").forEach(b => {
   b.onclick = () => {
     document.querySelectorAll(".tabbtn").forEach(x => x.classList.remove("active"));
     document.querySelectorAll(".tabpanel").forEach(x => x.classList.remove("active"));
-
     b.classList.add("active");
     document.getElementById(b.dataset.tab).classList.add("active");
   };
 });
 
-/* --- Original visualizer code (full fidelity) --- */
+/* Original visualizer (full fidelity) */
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 const slider = document.getElementById("stage-slider");
@@ -245,11 +253,11 @@ const nextBtn = document.getElementById("next-btn");
 let currentStage = 0;
 
 const STAGES = [
-  {id:0, name:"1 · Tensor Sensation", desc:"Raw chaos"},
-  {id:1, name:"2 · Matrix Attention", desc:"Correlations"},
-  {id:2, name:"3 · Vector + ResonanceMax", desc:"Latent resonance"},
-  {id:3, name:"4 · SoftMax", desc:"Probability field"},
-  {id:4, name:"5 · ArgMax", desc:"Collapse"}
+  {id:0, name:"1 · Tensor Sensation"},
+  {id:1, name:"2 · Matrix Attention"},
+  {id:2, name:"3 · Vector + ResonanceMax"},
+  {id:3, name:"4 · SoftMax"},
+  {id:4, name:"5 · ArgMax"}
 ];
 
 function resize() {
@@ -272,33 +280,30 @@ let particles = Array.from({length:N}, () => ({
 
 function updateParticles(stage) {
   const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2;
-
   particles.forEach(p => {
-    if (stage === 0) { // Tensor
+    if (stage === 0) {
       p.x += p.vx * 1.2; p.y += p.vy * 1.2;
       if (p.x<0||p.x>w) p.vx*=-1.05;
       if (p.y<0||p.y>h) p.vy*=-1.05;
-    } else if (stage === 1) { // Matrix
+    } else if (stage === 1) {
       p.x += p.vx*0.48; p.y += p.vy*0.48;
       if (p.x<0||p.x>w) p.vx*=-1;
       if (p.y<0||p.y>h) p.vy*=-1;
-    } else if (stage === 2) { // Vector + ResonanceMax
+    } else if (stage === 2) {
       p.vx += (3.5 - p.vx)*0.065;
       p.vy += (0.9 - p.vy)*0.065;
       p.x += p.vx; p.y += p.vy;
       if (p.x > w*0.98) { p.x = w*0.02; p.y = Math.random()*h*0.75 + h*0.12; }
-      
-      // Resonant perturbation
       p.angle += p.orbitSpeed * 0.6;
       p.x += Math.sin(p.angle) * 0.8;
       p.y += Math.cos(p.angle) * 0.6;
-    } else if (stage === 3) { // SoftMax
+    } else if (stage === 3) {
       p.angle += p.orbitSpeed * 1.35;
       const tx = cx + Math.cos(p.angle) * (p.orbitRadius * (0.85 + Math.sin(Date.now()/380)*0.25));
       const ty = cy + Math.sin(p.angle) * (p.orbitRadius * 0.7);
       p.x += (tx - p.x) * 0.095;
       p.y += (ty - p.y) * 0.095;
-    } else if (stage === 4) { // ArgMax
+    } else if (stage === 4) {
       p.x += (cx - p.x) * 0.17;
       p.y += (cy - p.y) * 0.17;
     }
@@ -307,10 +312,8 @@ function updateParticles(stage) {
 
 function draw() {
   const w = canvas.width, h = canvas.height, stage = currentStage, cx = w/2, cy = h/2;
-
   ctx.fillStyle = (stage >= 3) ? "rgba(8,8,13,0.72)" : "rgba(15,15,24,0.42)";
   ctx.fillRect(0,0,w,h);
-
   updateParticles(stage);
 
   if (stage === 1) {
@@ -322,10 +325,7 @@ function draw() {
         const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
         if (d < 88) {
           ctx.strokeStyle = `rgba(245,158,11,${0.75 - d/88})`;
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
         }
       }
     }
@@ -340,14 +340,13 @@ function draw() {
       ctx.lineWidth = 1.6;
       ctx.stroke();
     }
-
     ctx.beginPath();
     ctx.arc(p.x, p.y, stage === 4 ? 3.8 : 2.35, 0, Math.PI*2);
     ctx.fillStyle = stage === 4 ? "#fff" : (stage >= 2 ? "rgba(245,158,11,0.9)" : "rgba(245,158,11,0.75)");
     ctx.fill();
   });
 
-  if (stage === 3) { // SoftMax resonance pulse
+  if (stage === 3) {
     const pulse = Math.sin(Date.now()/160) * 12 + 16;
     ctx.beginPath();
     ctx.arc(cx, cy, pulse, 0, Math.PI*2);
@@ -358,14 +357,10 @@ function draw() {
 
   if (stage === 4) {
     const pulse = Math.abs(Math.sin(Date.now()/85)) * 13 + 8;
-    ctx.beginPath();
-    ctx.arc(cx, cy, pulse, 0, Math.PI*2);
-    ctx.fillStyle = "rgba(255,255,255,0.4)";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(cx, cy, 8, 0, Math.PI*2);
-    ctx.fillStyle = "#fff";
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, pulse, 0, Math.PI*2);
+    ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, 8, 0, Math.PI*2);
+    ctx.fillStyle = "#fff"; ctx.fill();
   }
 
   requestAnimationFrame(draw);
@@ -388,5 +383,5 @@ document.addEventListener("keydown", e => {
 
 draw();
 </script>
-</body>        
-</html>
+</body>
+</html>      
