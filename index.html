@@ -12,6 +12,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+button,input,select,textarea{font-family:inherit;font-size:100%;}
 
 :root{
   --bg:#08080D;
@@ -20,6 +21,7 @@
   --text:#E8E8F0;
   --muted:#7070A0;
   --amber:#F59E0B;
+  --gold:#E8C070;
   --serif:'DM Serif Display',serif;
   --sans:'DM Sans',sans-serif;
   --mono:'DM Mono',monospace;
@@ -34,9 +36,16 @@
   --text:#18160F;
   --muted:#6B6555;
   --amber:#92610A;
+  --gold:#7A5C1E;
 }
 
 body{background:var(--bg);color:var(--text);font-family:var(--sans);transition:0.3s;}
+::selection{background:var(--amber);color:var(--bg);}
+a{color:var(--amber);text-decoration:none;border-bottom:1px solid currentColor;transition:color 0.2s;}
+a:visited{color:var(--amber);}
+a:hover,a:focus-visible{color:var(--text);}
+a:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px;}
+code{font-family:var(--mono);font-size:0.85em;background:rgba(245,158,11,0.1);padding:0.15em 0.45em;border-radius:3px;color:var(--amber);}
 .site-nav{position:sticky;top:0;display:flex;align-items:center;padding:0.8rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg);z-index:10;}
 .logo-wrap{width:28px;height:28px;position:relative;margin-right:12px;}
 .logo-wrap img{position:absolute;width:100%;animation:spin 90s linear infinite;}
@@ -45,7 +54,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);transition:0
 [data-theme="light"] .logo-dark{opacity:0;}
 [data-theme="light"] .logo-light{opacity:1;}
 .brand{font-family:var(--serif);flex:1;}
-.theme-btn{font-family:var(--mono);font-size:0.7rem;padding:0.28rem 0.85rem;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;}
+.theme-btn{font-family:var(--mono);font-size:0.7rem;padding:0.28rem 0.85rem;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:color 0.2s,border-color 0.2s;}
+.theme-btn:hover{color:var(--text);border-color:var(--amber);}
 
 .page{max-width:var(--max);margin:auto;padding:2rem;}
 h1{font-family:var(--serif);font-size:2.4rem;margin-bottom:1rem;}
@@ -53,7 +63,7 @@ h1{font-family:var(--serif);font-size:2.4rem;margin-bottom:1rem;}
 .phase{padding:1.5rem;border-left:3px solid var(--amber);background:var(--surface);margin-top:2rem;border-radius:var(--radius);}
 .phase h2{font-family:var(--mono);font-size:0.85rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.5px;}
 .phase p{margin-top:0.75rem;color:var(--muted);line-height:1.65;font-size:0.95rem;}
-.phase .poetic {font-style:italic; color:#E8C070; margin:1rem 0; padding-left:1rem; border-left:2px solid var(--amber);}
+.phase .poetic {font-style:italic; color:var(--gold); margin:1rem 0; padding-left:1rem; border-left:2px solid var(--amber);}
 
 .visualizer{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin:2rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
 .canvas-wrap{position:relative;height:380px;border:1px solid var(--border);background:#0a0a12;border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;}
@@ -62,6 +72,8 @@ canvas{width:100%;height:100%;display:block;}
 
 .controls{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
 .slider{flex:1;accent-color:var(--amber);}
+.nav-btn{padding:0.4rem 1rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:4px;cursor:pointer;transition:color 0.2s,border-color 0.2s;}
+.nav-btn:hover{border-color:var(--amber);color:var(--text);}
 .step-labels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:0.5rem;}
 .step-labels span.active{color:var(--amber);font-weight:500;}
 
@@ -82,6 +94,7 @@ canvas{width:100%;height:100%;display:block;}
   font-size:0.75rem;
   transition: all 0.2s;
 }
+.tabbtn:hover:not(.active){color:var(--text);border-color:var(--muted);}
 .tabbtn.active{
   color:var(--amber);
   border-color:var(--amber);
@@ -140,8 +153,8 @@ canvas{width:100%;height:100%;display:block;}
 
       <div class="controls">
         <input type="range" id="stage-slider" class="slider" min="0" max="4" value="0" step="1">
-        <button id="prev-btn" style="padding:0.4rem 1rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:4px;cursor:pointer;">←</button>
-        <button id="next-btn" style="padding:0.4rem 1rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:4px;cursor:pointer;">→</button>
+        <button id="prev-btn" class="nav-btn">←</button>
+        <button id="next-btn" class="nav-btn">→</button>
       </div>
 
       <div class="step-labels">
@@ -186,7 +199,7 @@ canvas{width:100%;height:100%;display:block;}
         It manifests as the ATL <code>O)-(O</code> airtrain forks — directed vectors with resonant ambiguity (rootless dom7♭9 moment).
       </p>
       <p>
-        This is not abstract theory for me. It is an embodied topology I have lived between 1999–2026: repeated traversals through Atlanta’s Hartsfield-Jackson constraint manifold, the literal and metaphorical bottleneck where identity is suspended, compressed, and re-resolved. The last two years (when travel paused) brought the pattern into sharper focus — a return of the same resonant fork, now demanding formalization beyond clinical constraints (MD/MPH/PhDc) into this architectural exploration.
+        This is not abstract theory for me. It is an embodied topology I have lived between 1999–2026: repeated traversals through Atlanta's Hartsfield-Jackson constraint manifold, the literal and metaphorical bottleneck where identity is suspended, compressed, and re-resolved. The last two years (when travel paused) brought the pattern into sharper focus — a return of the same resonant fork, now demanding formalization beyond clinical constraints (MD/MPH/PhDc) into this architectural exploration.
       </p>
       <p>
         <strong>Core reference:</strong> <a href="https://ukubona-llc.github.io/governance-of-topology/" target="_blank">Governance of Topology</a> details the ATL <code>O)-(O</code> as the physical embodiment of the latent bottleneck — the precise geometry where high-dimensional states are flattened into constrained transport before re-expansion.
@@ -384,4 +397,4 @@ document.addEventListener("keydown", e => {
 draw();
 </script>
 </body>
-</html>      
+</html>
