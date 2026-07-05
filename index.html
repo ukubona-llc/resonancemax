@@ -49,6 +49,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);transition:0
 
 .page{max-width:var(--max);margin:auto;padding:2rem;}
 h1{font-family:var(--serif);font-size:2.4rem;margin-bottom:1rem;}
+
 .phase{padding:1.5rem;border-left:3px solid var(--amber);background:var(--surface);margin-top:2rem;border-radius:var(--radius);}
 .phase h2{font-family:var(--mono);font-size:0.85rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.5px;}
 .phase p{margin-top:0.75rem;color:var(--muted);line-height:1.65;font-size:0.95rem;}
@@ -62,6 +63,32 @@ canvas{width:100%;height:100%;display:block;}
 .slider{flex:1;accent-color:var(--amber);}
 .step-labels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:0.5rem;}
 .step-labels span.active{color:var(--amber);font-weight:500;}
+
+/* Tab system */
+.tabbar{
+  display:flex;
+  gap:0.5rem;
+  margin:1.5rem 0 0.75rem 0;
+}
+.tabbtn{
+  padding:0.4rem 0.9rem;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--muted);
+  border-radius:20px;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:0.75rem;
+  transition: all 0.2s;
+}
+.tabbtn.active{
+  color:var(--amber);
+  border-color:var(--amber);
+  background:rgba(245,158,11,0.08);
+}
+
+.tabpanel{display:none;}
+.tabpanel.active{display:block;}
 </style>
 </head>
 
@@ -79,61 +106,112 @@ canvas{width:100%;height:100%;display:block;}
 <div class="page">
   <h1>Pentadic Resonance System</h1>
 
-  <div class="visualizer">
-    <div class="canvas-wrap">
-      <div class="label" id="current-label">1 · Tensor Sensation</div>
-      <canvas id="c"></canvas>
+  <!-- Tab Bar -->
+  <div class="tabbar">
+    <button class="tabbtn active" data-tab="system">System</button>
+    <button class="tabbtn" data-tab="meta">Critique / Meta</button>
+  </div>
+
+  <!-- TAB 1: SYSTEM (original content preserved) -->
+  <div id="system" class="tabpanel active">
+
+    <div class="visualizer">
+      <div class="canvas-wrap">
+        <div class="label" id="current-label">1 · Tensor Sensation</div>
+        <canvas id="c"></canvas>
+      </div>
+
+      <div class="controls">
+        <input type="range" id="stage-slider" class="slider" min="0" max="4" value="0" step="1">
+        <button id="prev-btn" style="padding:0.4rem 1rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:4px;cursor:pointer;">←</button>
+        <button id="next-btn" style="padding:0.4rem 1rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:4px;cursor:pointer;">→</button>
+      </div>
+
+      <div class="step-labels">
+        <span data-step="0" class="active">I Tensor</span>
+        <span data-step="1">II Matrix</span>
+        <span data-step="2">III Vector + ResonanceMax</span>
+        <span data-step="3">IV SoftMax</span>
+        <span data-step="4">V ArgMax</span>
+      </div>
     </div>
 
-    <div class="controls">
-      <input type="range" id="stage-slider" class="slider" min="0" max="4" value="0" step="1">
-      <button id="prev-btn" style="padding:0.4rem 1rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:4px;cursor:pointer;">←</button>
-      <button id="next-btn" style="padding:0.4rem 1rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:4px;cursor:pointer;">→</button>
+    <!-- Original phases preserved -->
+    <div class="phase">
+      <h2>1 · Tensor Sensation</h2>
+      <p>Raw high-dimensional event-stream. Pure multiplicity and noise.</p>
     </div>
 
-    <div class="step-labels">
-      <span data-step="0" class="active">I Tensor</span>
-      <span data-step="1">II Matrix</span>
-      <span data-step="2">III Vector + ResonanceMax</span>
-      <span data-step="3">IV SoftMax</span>
-      <span data-step="4">V ArgMax</span>
+    <div class="phase">
+      <h2>2 · Matrix Attention</h2>
+      <p>Correlations and relationships begin to form between signals. Or even better: the <em>a priori</em> knowledge is integrated as constraint: think Demis Hassabis and the established databases with known protein 3D configurations</p>
     </div>
+        
+    <div class="phase">
+      <h2>3 · Vector Intention + ResonanceMax</h2>
+      <p>
+        Latent space emerges. Embeddings become vectorial — proximity encodes meaning, but opens up a can-of-worms for ambiguity, mistaken identity, art, and even tragedy. 
+        <strong>ResonanceMax</strong>: the coupling operator between bottom-up event-stream and top-down structure. 
+        The ATL <code>o)-(o</code> airtrain forks — directed vectors with resonant ambiguity (rootless dom7♭9 moment).
+      </p>
+    </div>
+
+    <div class="phase">
+      <h2>4 · SoftMax</h2>
+      <p>
+        Probability distribution over possible resolutions. Passengers shift toward doors. 
+        Maximum tension before collapse.
+      </p>
+    </div>
+
+    <div class="phase">
+      <h2>5 · ArgMax → Scalar Collapse</h2>
+      <p>
+        One outcome is selected. The train doors open at a single concourse. 
+        Decisive identity and action. (Then the cycle returns to tensor.)
+      </p>
+    </div>
+
   </div>
 
-  <!-- Phases with ResonanceMax in III -->
-  <div class="phase">
-    <h2>1 · Tensor Sensation</h2>
-    <p>Raw high-dimensional event-stream. Pure multiplicity and noise.</p>
-  </div>
+  <!-- TAB 2: META / CRITIQUE -->
+  <div id="meta" class="tabpanel">
 
-  <div class="phase">
-    <h2>2 · Matrix Attention</h2>
-    <p>Correlations and relationships begin to form between signals. Or even better: the <em>a priori</em> knowledge is integrated as constraint: think Demis Hassabis and the established databases with known protein 3D configurations</p>
-  </div>
-      
-  <div class="phase">
-    <h2>3 · Vector Intention + ResonanceMax</h2>
-    <p>
-      Latent space emerges. Embeddings become vectorial — proximity encodes meaning, but opens up a can-of-worms for ambiguity, mistaken identity, art, and even tragedy. 
-      <strong>ResonanceMax</strong>: the coupling operator between bottom-up event-stream and top-down structure. 
-      The ATL <code>o)-(o</code> airtrain forks — directed vectors with resonant ambiguity (rootless dom7♭9 moment).
-    </p>
-  </div>
+    <div class="phase">
+      <h2>Meta Layer · What this system is</h2>
+      <p>
+        This is not just a visualization. It is a staged ontology of inference:
+        tensor → attention → embedding → probability → collapse.
+        The system behaves like a cognitive state machine rendered as physics.
+      </p>
+    </div>
 
-  <div class="phase">
-    <h2>4 · SoftMax</h2>
-    <p>
-      Probability distribution over possible resolutions. Passengers shift toward doors. 
-      Maximum tension before collapse.
-    </p>
-  </div>
+    <div class="phase">
+      <h2>Critique · Structural read</h2>
+      <p>
+        You’ve implicitly reconstructed known ML structure (attention, embeddings, SoftMax, ArgMax)
+        but extended it with a nonstandard operator: <b>ResonanceMax</b>.
+        This functions as a cross-level coupling mechanism between signal chaos and structured representation.
+      </p>
+    </div>
 
-  <div class="phase">
-    <h2>5 · ArgMax → Scalar Collapse</h2>
-    <p>
-      One outcome is selected. The train doors open at a single concourse. 
-      Decisive identity and action. (Then the cycle returns to tensor.)
-    </p>
+    <div class="phase">
+      <h2>Critical gap</h2>
+      <p>
+        The system is currently phenomenological and executable, but not yet formal.
+        “ResonanceMax” is defined by behavior and narrative rather than a measurable invariant or constraint.
+        This is the boundary between aesthetic system design and scientific model.
+      </p>
+    </div>
+
+    <div class="phase">
+      <h2>Interpretation</h2>
+      <p>
+        You are no longer translating ML concepts—you are instantiating cognition as a dynamic system.
+        This is a phase shift from “understanding models” to “building representational universes.”
+      </p>
+    </div>
+
   </div>
 </div>
 
@@ -145,6 +223,18 @@ btn.onclick = () => {
   btn.textContent = isDark ? "dark" : "light";
 };
 
+/* Tab Logic */
+document.querySelectorAll(".tabbtn").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll(".tabbtn").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".tabpanel").forEach(x => x.classList.remove("active"));
+
+    b.classList.add("active");
+    document.getElementById(b.dataset.tab).classList.add("active");
+  };
+});
+
+/* --- Original visualizer code (full fidelity) --- */
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 const slider = document.getElementById("stage-slider");
