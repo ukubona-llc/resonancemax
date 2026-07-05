@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ukubona · ResonanceMax · Pentadic Kernel</title>
+
+<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" id="favicon-dark"/>
+<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme:light)" id="favicon-light"/>
+
+<link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image"/>
+<link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image"/>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap');
+
+:root{
+  --bg:#08080D;
+  --surface:#0F0F18;
+  --border:#1E1E2E;
+  --text:#E8E8F0;
+  --muted:#7070A0;
+  --amber:#F59E0B;
+  --serif:'DM Serif Display', serif;
+  --sans:'DM Sans', sans-serif;
+  --mono:'DM Mono', monospace;
+  --radius:6px;
+  --max:880px;
+}
+
+[data-theme="light"]{
+  --bg:#F2F0EA;
+  --surface:#FFFFFF;
+  --border:rgba(0,0,0,0.09);
+  --text:#18160F;
+  --muted:#6B6555;
+  --amber:#92610A;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  transition:0.3s;
+}
+
+/* NAV */
+.site-nav{
+  position:sticky;
+  top:0;
+  display:flex;
+  align-items:center;
+  padding:0.8rem 1.5rem;
+  border-bottom:1px solid var(--border);
+  background:var(--bg);
+  z-index:10;
+}
+
+.logo-wrap{
+  width:28px;
+  height:28px;
+  position:relative;
+  margin-right:10px;
+}
+
+.logo-wrap img{
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  animation:spin 90s linear infinite;
+}
+
+@keyframes spin{ to{ transform:rotate(360deg);} }
+
+.logo-light{ opacity:0; }
+[data-theme="light"] .logo-dark{ opacity:0; }
+[data-theme="light"] .logo-light{ opacity:1; }
+
+.brand{
+  font-family:var(--serif);
+  flex:1;
+}
+
+.toggle{
+  font-family:var(--mono);
+  font-size:0.7rem;
+  padding:0.3rem 0.8rem;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  cursor:pointer;
+}
+
+/* PAGE */
+.page{
+  max-width:var(--max);
+  margin:auto;
+  padding:2rem;
+}
+
+h1{
+  font-family:var(--serif);
+  font-size:2.5rem;
+  margin-bottom:0.5rem;
+}
+
+.sub{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* PENTAD */
+.pentad{
+  margin-top:2rem;
+  display:grid;
+  gap:1rem;
+}
+
+.node{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--amber);
+  padding:1rem;
+  border-radius:var(--radius);
+}
+
+.node h2{
+  margin:0;
+  font-family:var(--mono);
+  font-size:0.8rem;
+  color:var(--amber);
+  text-transform:uppercase;
+}
+
+.node p{
+  margin-top:0.5rem;
+  color:var(--muted);
+  font-size:0.9rem;
+  line-height:1.6;
+}
+
+.mini{
+  margin-top:2rem;
+  padding:1rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  font-family:var(--mono);
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+.highlight{
+  color:var(--amber);
+  font-weight:500;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="site-nav">
+  <div class="logo-wrap">
+    <img class="logo-dark" src="https://abikesa.github.io/logos/assets/ukubona-dark.png">
+    <img class="logo-light" src="https://abikesa.github.io/logos/assets/ukubona-light.png">
+  </div>
+
+  <div class="brand">Ukubona · ResonanceMax Kernel</div>
+
+  <button class="toggle" id="toggle">light</button>
+</nav>
+
+<div class="page">
+
+<h1>Pentadic Resonance Engine</h1>
+
+<p class="sub">
+A system that does not compute in steps, but resolves identity through five irreducible phases.
+</p>
+
+<div class="pentad">
+
+  <div class="node">
+    <h2>1 · Observation</h2>
+    <p>Event stream (T). Raw incoming world-state.</p>
+  </div>
+
+  <div class="node">
+    <h2>2 · Model</h2>
+    <p>A priori structure (M). Learned memory / eigenbasis.</p>
+  </div>
+
+  <div class="node">
+    <h2>3 · ResonanceMax</h2>
+    <p class="highlight">
+      Alignment operator between T and M.
+      This is the coupling moment: where signal becomes comparable.
+    </p>
+  </div>
+
+  <div class="node">
+    <h2>4 · softMax</h2>
+    <p>
+      Probability distribution over resonant candidates.
+      The system spreads identity instead of choosing.
+    </p>
+  </div>
+
+  <div class="node">
+    <h2>5 · argMax</h2>
+    <p>
+      Final collapse. One identity is selected from the distribution.
+    </p>
+  </div>
+
+</div>
+
+<div class="mini">
+Pipeline: T → M → <span class="highlight">ResonanceMax</span> → softMax → argMax
+</div>
+
+</div>
+
+<script>
+/* THEME TOGGLE */
+const btn = document.getElementById("toggle");
+let theme = "dark";
+
+btn.onclick = () => {
+  theme = theme === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", theme);
+  btn.textContent = theme === "dark" ? "light" : "dark";
+};
+</script>
+
+</body>
+</html>
