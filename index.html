@@ -56,7 +56,7 @@ body{
   transition:0.3s;
 }
 
-/* NAV (canonical Ukubona) */
+/* NAV */
 .site-nav{
   position:sticky;
   top:0;
@@ -117,50 +117,90 @@ h1{
 }
 
 .phase{
-  padding:1rem;
+  padding:1.5rem;
   border-left:3px solid var(--amber);
   background:var(--surface);
-  margin-top:1rem;
+  margin-top:2rem;
   border-radius:var(--radius);
+  position:relative;
 }
 
 .phase h2{
   font-family:var(--mono);
-  font-size:0.8rem;
+  font-size:0.85rem;
   color:var(--amber);
   text-transform:uppercase;
+  letter-spacing:0.5px;
 }
 
 .phase p{
-  margin-top:0.5rem;
+  margin-top:0.75rem;
   color:var(--muted);
-  line-height:1.6;
-  font-size:0.9rem;
+  line-height:1.65;
+  font-size:0.95rem;
 }
 
-/* CANVAS (ONLY PHASE 1 CHAOS) */
-.canvas-wrap{
-  margin-top:2rem;
-  height:340px;
-  border:1px solid var(--border);
+/* VISUALIZER */
+.visualizer{
   background:var(--surface);
+  border:1px solid var(--border);
   border-radius:var(--radius);
+  padding:1.25rem;
+  margin:2rem 0;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+
+.canvas-wrap{
   position:relative;
+  height:380px;
+  border:1px solid var(--border);
+  background:#0a0a12;
+  border-radius:var(--radius);
   overflow:hidden;
+  margin-bottom:1.25rem;
 }
 
 canvas{width:100%;height:100%;display:block;}
 
 .label{
   position:absolute;
-  top:12px;
-  left:12px;
+  top:16px;
+  left:16px;
+  font-family:var(--mono);
+  font-size:0.75rem;
+  color:var(--amber);
+  background:rgba(0,0,0,0.6);
+  padding:0.4rem 0.8rem;
+  border-radius:3px;
+  z-index:5;
+  backdrop-filter:blur(4px);
+}
+
+/* Controls */
+.controls{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.slider{
+  flex:1;
+  accent-color:var(--amber);
+}
+
+.step-labels{
+  display:flex;
+  justify-content:space-between;
   font-family:var(--mono);
   font-size:0.7rem;
+  color:var(--muted);
+  margin-top:0.5rem;
+}
+
+.step-labels span.active{
   color:var(--amber);
-  background:rgba(0,0,0,0.2);
-  padding:0.3rem 0.6rem;
-  border-radius:3px;
+  font-weight:500;
 }
 </style>
 </head>
@@ -172,9 +212,7 @@ canvas{width:100%;height:100%;display:block;}
     <img class="logo-dark" src="https://abikesa.github.io/logos/assets/ukubona-dark.png">
     <img class="logo-light" src="https://abikesa.github.io/logos/assets/ukubona-light.png">
   </div>
-
   <div class="brand">Ukubona · ResonanceMax Pentad</div>
-
   <button class="theme-btn" id="toggle">light</button>
 </nav>
 
@@ -182,99 +220,249 @@ canvas{width:100%;height:100%;display:block;}
 
 <h1>Pentadic Resonance System</h1>
 
-<!-- 1 TENSOR (ONLY PLACE WITH CHAOS) -->
-<div class="phase">
-  <h2>1 · Tensor Sensation (chaos field)</h2>
-
-  <p>
-    Raw event-stream. No structure. No identity. Only multiplicity.
-  </p>
-
+<div class="visualizer">
   <div class="canvas-wrap">
-    <div class="label">TENSOR FIELD</div>
+    <div class="label" id="current-label">1 · Tensor Sensation</div>
     <canvas id="c"></canvas>
+  </div>
+
+  <div class="controls">
+    <input type="range" id="stage-slider" class="slider" min="0" max="4" value="0" step="1">
+    <button id="prev-btn" style="padding:0.4rem 1rem; background:var(--surface); border:1px solid var(--border); color:var(--muted); border-radius:4px; cursor:pointer;">←</button>
+    <button id="next-btn" style="padding:0.4rem 1rem; background:var(--surface); border:1px solid var(--border); color:var(--muted); border-radius:4px; cursor:pointer;">→</button>
+  </div>
+
+  <div class="step-labels">
+    <span data-step="0" class="active">Tensor</span>
+    <span data-step="1">Matrix</span>
+    <span data-step="2">Vector</span>
+    <span data-step="3">Resonance</span>
+    <span data-step="4">Collapse</span>
   </div>
 </div>
 
-<!-- 2 MATRIX -->
+<!-- PHASE 1 -->
+<div class="phase">
+  <h2>1 · Tensor Sensation (chaos field)</h2>
+  <p>Raw event-stream. No structure. No identity. Only multiplicity and noise. Bottom-up sensory flood.</p>
+</div>
+
+<!-- PHASE 2 -->
 <div class="phase">
   <h2>2 · Matrix Attention</h2>
-  <p>Structure begins. Relationships emerge between particles (no canvas here).</p>
+  <p>Structure begins. Relationships and correlations emerge between particles. The field starts to cohere.</p>
 </div>
 
-<!-- 3 VECTOR -->
+<!-- PHASE 3 -->
 <div class="phase">
   <h2>3 · Vector Intention</h2>
-  <p>Directional compression begins. Flow replaces noise.</p>
+  <p>Directional compression. Flow replaces isotropic noise. Gradients form and intention arises.</p>
 </div>
 
-<!-- 4 RESONANCE -->
+<!-- PHASE 4 -->
 <div class="phase">
-  <h2>4 · ResonanceMax</h2>
+  <h2>4 · ResonanceMax (Eigenmode)</h2>
   <p>
-    Coupling operator: alignment between tensor field and latent structure.
-    This is NOT a step — it is the bridge.
+    The coupling bridge. Bottom-up event-stream meets top-down latent structure. Stable identities (eigenmodes) that survive perturbation.
   </p>
 </div>
 
-<!-- 5 COLLAPSE -->
+<!-- PHASE 5 -->
 <div class="phase">
-  <h2>5 · softMax → argMax</h2>
+  <h2>5 · softMax → argMax (Scalar Collapse)</h2>
   <p>
-    Probability distribution forms (softmax), then collapses (argmax) into identity.
+    Probability distribution forms, then collapses into decisive identity. From high-dimensional possibility to a single computable action.
   </p>
 </div>
 
 </div>
 
 <script>
-/* THEME TOGGLE (FIXED TO YOUR TEMPLATE STYLE) */
+/* THEME TOGGLE */
 const btn = document.getElementById("toggle");
-
 btn.onclick = () => {
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
   document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
   btn.textContent = isDark ? "dark" : "light";
 };
 
-/* TENSOR CHAOS ONLY (PHASE 1) */
+/* PENTAD VISUALIZER */
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
+const slider = document.getElementById("stage-slider");
+const labelEl = document.getElementById("current-label");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
 
-function resize(){
+let currentStage = 0;
+const STAGES = [
+  { id: 0, name: "1 · Tensor Sensation", desc: "Chaos field" },
+  { id: 1, name: "2 · Matrix Attention", desc: "Correlations emerge" },
+  { id: 2, name: "3 · Vector Intention", desc: "Directional flow" },
+  { id: 3, name: "4 · ResonanceMax", desc: "Eigenmode stability" },
+  { id: 4, name: "5 · softMax → argMax", desc: "Scalar collapse" }
+];
+
+function resize() {
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
 }
 resize();
 window.addEventListener("resize", resize);
 
-const N = 140;
-const pts = Array.from({length:N}).map(()=>({
-  x:Math.random()*canvas.width,
-  y:Math.random()*canvas.height,
-  vx:(Math.random()-0.5)*2.5,
-  vy:(Math.random()-0.5)*2.5
+const N = 180;
+let particles = Array.from({length: N}).map(() => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  vx: (Math.random() - 0.5) * 3.2,
+  vy: (Math.random() - 0.5) * 3.2,
+  angle: Math.random() * Math.PI * 2,
+  orbitRadius: Math.random() * 110 + 40,
+  orbitSpeed: (Math.random() * 0.018) + 0.008,
+  baseX: 0,
+  baseY: 0
 }));
 
-function draw(){
-  ctx.fillStyle="rgba(15,15,24,0.35)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+let animationFrame;
 
-  for(const p of pts){
-    p.x += p.vx;
-    p.y += p.vy;
+function updateParticles(stage) {
+  const w = canvas.width;
+  const h = canvas.height;
+  const cx = w / 2;
+  const cy = h / 2;
 
-    if(p.x<0||p.x>canvas.width)p.vx*=-1;
-    if(p.y<0||p.y>canvas.height)p.vy*=-1;
+  particles.forEach((p, i) => {
+    if (stage === 0) { // Tensor - pure chaos
+      p.x += p.vx * 1.15;
+      p.y += p.vy * 1.15;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+    } 
+    else if (stage === 1) { // Matrix - slow + connections
+      p.x += p.vx * 0.45;
+      p.y += p.vy * 0.45;
+      if (p.x < 0 || p.x > w) p.vx *= -1.05;
+      if (p.y < 0 || p.y > h) p.vy *= -1.05;
+    } 
+    else if (stage === 2) { // Vector - directional flow
+      p.vx += (4.5 - p.vx) * 0.06;
+      p.vy += (0.6 - p.vy) * 0.06;
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x > w) { p.x = 0; p.y = Math.random() * h * 0.8 + h * 0.1; }
+    } 
+    else if (stage === 3) { // Resonance / Eigenmode
+      p.angle += p.orbitSpeed;
+      const tx = cx + Math.cos(p.angle) * p.orbitRadius;
+      const ty = cy + Math.sin(p.angle) * (p.orbitRadius * 0.6);
+      p.x += (tx - p.x) * 0.085;
+      p.y += (ty - p.y) * 0.085;
+    } 
+    else if (stage === 4) { // Collapse
+      p.x += (cx - p.x) * 0.14;
+      p.y += (cy - p.y) * 0.14;
+    }
+  });
+}
 
+function draw() {
+  const w = canvas.width;
+  const h = canvas.height;
+  const stage = currentStage;
+  const cx = w / 2;
+  const cy = h / 2;
+
+  // Fade trail
+  ctx.fillStyle = stage === 4 ? "rgba(8,8,13,0.65)" : "rgba(15,15,24,0.42)";
+  ctx.fillRect(0, 0, w, h);
+
+  updateParticles(stage);
+
+  // Draw connections in Matrix stage
+  if (stage === 1) {
+    ctx.lineWidth = 0.6;
+    for (let i = 0; i < particles.length; i += 2) {
+      const p1 = particles[i];
+      for (let j = i + 1; j < Math.min(i + 18, particles.length); j++) {
+        const p2 = particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 95) {
+          ctx.strokeStyle = `rgba(245, 158, 11, ${0.75 - dist / 95})`;
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  // Draw particles / vectors
+  particles.forEach((p, i) => {
+    if (stage === 2) {
+      // Vector trails
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(p.x - p.vx * 4, p.y - p.vy * 4);
+      ctx.strokeStyle = "rgba(245, 230, 163, 0.75)";
+      ctx.lineWidth = 1.8;
+      ctx.stroke();
+    }
+
+    // Main particle
     ctx.beginPath();
-    ctx.arc(p.x,p.y,2.2,0,Math.PI*2);
-    ctx.fillStyle="rgba(245,158,11,0.7)";
+    const r = (stage === 4) ? 3.5 : 2.4;
+    ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+    
+    if (stage === 4) {
+      ctx.fillStyle = "#fff";
+    } else if (stage === 3) {
+      ctx.fillStyle = "rgba(245, 158, 11, 0.9)";
+    } else {
+      ctx.fillStyle = "rgba(245, 158, 11, 0.75)";
+    }
+    ctx.fill();
+  });
+
+  // Scalar pulse
+  if (stage === 4) {
+    const pulse = Math.sin(Date.now() / 140) * 11 + 11;
+    ctx.beginPath();
+    ctx.arc(cx, cy, pulse + 6, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.25)";
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+    ctx.fillStyle = "#fff";
     ctx.fill();
   }
 
-  requestAnimationFrame(draw);
+  animationFrame = requestAnimationFrame(draw);
 }
+
+/* Stage Management */
+function setStage(newStage) {
+  currentStage = Math.max(0, Math.min(4, newStage));
+  slider.value = currentStage;
+  labelEl.textContent = STAGES[currentStage].name;
+
+  document.querySelectorAll('.step-labels span').forEach((span, i) => {
+    span.classList.toggle('active', i === currentStage);
+  });
+}
+
+slider.addEventListener("input", () => setStage(parseInt(slider.value)));
+prevBtn.addEventListener("click", () => setStage(currentStage - 1));
+nextBtn.addEventListener("click", () => setStage(currentStage + 1));
+
+/* Keyboard support */
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") setStage(currentStage + 1);
+  if (e.key === "ArrowLeft") setStage(currentStage - 1);
+});
 
 draw();
 </script>
